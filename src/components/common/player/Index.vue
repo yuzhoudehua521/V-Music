@@ -24,9 +24,7 @@
                 class="img-outer"
                 ref="discRotate"
               >
-                <div class="img-wrap">
-                  <img v-lazy="$utils.genImgUrl(currentSong.img, 400)" />
-                </div>
+                <div class="img-wrap"></div>
               </div>
             </div>
           </div>
@@ -74,8 +72,6 @@
             <!-- 分页 -->
             <div class="page-wrap">
               <el-pagination
-                @size-change="handleSizeChange"
-                @current-change="handleCurrentChange"
                 :current-page="currentPage"
                 :page-size="limit"
                 hide-on-single-page
@@ -149,17 +145,29 @@ export default {
     CommentBox
   },
   computed: {
-    ...mapGetters(['userInfo', 'loginStatu']),
+    ...mapGetters([
+      'userInfo',
+      'loginStatu',
+      'currentSong',
+      'playing',
+      'currentIndex'
+    ]),
     ...mapState(['isPlayerShow'])
   },
-  mounted() {
-    // this.$route.query获取点击url参数
-    let id = this.$route.query.id
-    if (id) {
-      this.songId = id
-      this._initialize(id)
-    }
+  mounted() {},
+  //监听数据变化
+  watch: {
+    //监听播放界面显示与否
+    isPlayerShow(show) {
+      if (show) {
+        let id = this.currentSong.id
+        this._initialize(id)
+      }
+    },
+    //当前歌曲是否发生改变
+    currentSong(newSong, oldSong) {}
   },
+  updated() {},
   methods: {
     //播放界面组件显示和隐藏
     ...mapMutations({ setPlayerShow: 'SET_PLAYER_SHOW' }),
@@ -180,6 +188,7 @@ export default {
           this.commentTotal = res.total
           if (res.hotComments) {
             this.hotComments = res.hotComments
+            console.log(res.hotComments)
           } else {
             this.hotComments = []
           }
@@ -299,7 +308,7 @@ export default {
 <style lang="stylus" scoped>
 .player {
   position: fixed;
-  top: 74px;
+  top: 70px;
   bottom: 72px;
   left: 0;
   right: 0;
@@ -348,3 +357,4 @@ export default {
   }
 }
 </style>
+

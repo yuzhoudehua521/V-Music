@@ -185,6 +185,7 @@ export default {
     percent() {
       return this.currentTime / this.currentSong.duration
     },
+    
     ...mapGetters([
       'playList',
       'currentSong',
@@ -496,9 +497,7 @@ export default {
     ])
   },
   created() {},
-  mounted() {
-    // console.log(this.historyList)
-  }
+  mounted() {}
 }
 </script>
 

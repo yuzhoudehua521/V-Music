@@ -22,7 +22,7 @@ const state = {
   // 历史播放列表
   historyList: [],
   //具体播放界面显示和隐藏
-  isPlayerShow: false
+  isPlayerShow: false,
 }
 
 export default state
