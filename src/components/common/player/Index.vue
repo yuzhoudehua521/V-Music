@@ -35,7 +35,7 @@
 
         <!-- 评论部分 -->
         <div class="comment">
-          <div class="comments">
+          <div class="left">
             <div class="title flex-row">
               <i class="iconfont nicepinglun"></i>Comments |
               <span class="noticom"
@@ -83,7 +83,7 @@
           </div>
 
           <!-- 右边，相似歌曲推荐 -->
-          <div class="recommend" v-if="similarSongs.length">
+          <div class="right" v-if="similarSongs.length">
             <!-- 相似歌单 -->
             <div class="simi-playlist" v-if="similarPlayList.length">
               <p class="title">包含这首歌的歌单</p>
@@ -309,14 +309,13 @@ export default {
 .player {
   position: fixed;
   top: 70px;
-  bottom: 72px;
+  bottom: 65px;
   left: 0;
   right: 0;
   padding: 0 36px;
   background: #f9f9f9;
   z-index: 998;
-  overflow: hidden;
-  overflow-y: hidden;
+  overflow: scroll;
   // 指定transform，花费0.5完成
   transition: transform 0.5s;
 
@@ -348,10 +347,11 @@ export default {
       margin-top: 48px;
       margin-bottom: 36px;
 
-      .comments {
+      .left {
+        flex: 1;
       }
 
-      .recommend {
+      .right {
       }
     }
   }
