@@ -2,15 +2,18 @@
   <div class="list" id="list">
     <div
       class="item"
-      v-for="(item, index) in djRadios"
-      :key="index"
-      :class="[ index < 24 ? '' : 'Bannerdisplay']"
+      v-for="(item1, index1) in djRadios"
+      :key="index1"
+      :class="[index1 < 24 ? '' : 'Bannerdisplay']"
     >
       <div class="wrapper">
         <div class="cover">
           <div class="image">
-            <el-image :key="item.picUrl " :src="item.picUrl " lazy>
-              <div slot="placeholder" class="image-slot flex-center flex-column">
+            <el-image :key="item1.picUrl" :src="item1.picUrl" lazy>
+              <div
+                slot="placeholder"
+                class="image-slot flex-center flex-column"
+              >
                 <i class="iconfont niceicon-3"></i>
                 <p>
                   加载中
@@ -25,12 +28,12 @@
           <div class="count">
             <i class="arrow"></i>
             <!-- 使用工具函数转换数字 -->
-            <span>{{ utils.tranNumber(item.subCount, 0) }}</span>
+            <span>{{ utils.tranNumber(item1.subCount, 0) }}</span>
           </div>
         </div>
       </div>
       <div class="info">
-        <h2 class="name ellipsis-two">{{ item.name }}</h2>
+        <h2 class="name ellipsis-two">{{ item1.name }}</h2>
       </div>
     </div>
   </div>

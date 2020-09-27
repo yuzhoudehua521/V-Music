@@ -13,6 +13,7 @@ import niceEmpty from '@/components/common/empty/Index.vue'
 import '@/assets/styles/reset.styl'
 import '@/assets/styles/common.css'
 import '@/assets/styles/iconfont.css'
+import '@/assets/styles/iconfont.js'
 import {
   Avatar,
   Dropdown,

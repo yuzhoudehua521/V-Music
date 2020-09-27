@@ -2,9 +2,15 @@
   <transition name="fade">
     <div class="player-bar shadow flex-row" v-show="playList.length > 0">
       <div @click="togglePlayerShow">
+        <div class="mask"></div>
         <div class="avatar">
           <img :src="currentSong.image" alt="nicemusic" />
         </div>
+        <!-- <div class="player-control">
+          <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-shen"></use>
+          </svg>
+        </div> -->
       </div>
 
       <div class="info">
@@ -185,7 +191,7 @@ export default {
     percent() {
       return this.currentTime / this.currentSong.duration
     },
-    
+
     ...mapGetters([
       'playList',
       'currentSong',
@@ -532,6 +538,19 @@ export default {
   z-index: 8000;
   padding: 0 10px 0 20px;
   justify-content: space-between;
+
+  .mask {
+    position: absolute;
+    left: 20px;
+    bottom: 0;
+    top: 5px;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    cursor: pointer;
+  }
 
   .avatar {
     width: 60px;

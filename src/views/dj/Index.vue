@@ -1,9 +1,24 @@
 <template>
-  <el-carousel class="banner-carousel" :interval="4000" type="card" v-if="bannersInit">
-    <el-carousel-item class="banner-carousel-item" v-for="item in djbanners" :key="item.targetId">
-      <img class="banner-carousel-img" :src="item.pic" :alt="item.typeTitle" />
-    </el-carousel-item>
-  </el-carousel>
+  <div>
+    <el-carousel
+      class="banner-carousel"
+      :interval="4000"
+      type="card"
+      v-if="bannersInit"
+    >
+      <el-carousel-item
+        class="banner-carousel-item"
+        v-for="(items, indexs) in djbanners"
+        :key="indexs"
+      >
+        <img
+          class="banner-carousel-img"
+          :src="items.pic"
+          :alt="items.typeTitle"
+        />
+      </el-carousel-item>
+    </el-carousel>
+  </div>
 </template>
 
 <script>

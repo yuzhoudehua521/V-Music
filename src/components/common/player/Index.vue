@@ -39,10 +39,40 @@
             </div>
             <div class="desc">
               <div class="desc-item">
+                <span class="label">专辑：</span>
+                <div class="value">{{ currentSong.album }}</div>
                 <span class="label">歌手：</span>
                 <div class="value">{{ currentSong.singer }}</div>
               </div>
             </div>
+
+            <!-- 歌词 -->
+            <transition name="fade">
+              <div class="lyric-box shadow" v-if="showLyric">
+                <div class="title flex-between">歌词</div>
+                <scroll
+                  class="lyric"
+                  ref="lyricList"
+                  :data="currentLyric && currentLyric.lines"
+                >
+                  <div class="lyric-wrapper">
+                    <div v-if="currentLyric">
+                      <p
+                        ref="lyricLine"
+                        class="lyric-text"
+                        :class="currentLyricNum === index ? 'active' : ''"
+                        v-for="(item, index) of currentLyric.lines"
+                        :key="index"
+                      >
+                        {{ item.txt }}
+                      </p>
+                    </div>
+                    <div class="no-lyric" v-else>暂无歌词，请您欣赏</div>
+                  </div>
+                </scroll>
+                <div class="foot"></div>
+              </div>
+            </transition>
           </div>
         </div>
 
@@ -85,9 +115,9 @@
             <!-- 分页 -->
             <div class="page-wrap">
               <el-pagination
+                @current-change="handleCurrentChange"
                 :current-page="currentPage"
                 :page-size="limit"
-                hide-on-single-page
                 layout="total, prev, pager, next"
                 :total="commentTotal"
               >
@@ -98,31 +128,41 @@
           <!-- 右边，相似歌曲推荐 -->
           <div class="right" v-if="similarSongs.length">
             <!-- 相似歌单 -->
-            <div class="simi-playlist" v-if="similarPlayList.length">
+            <div class="simi-playlists" v-if="similarPlayList.length">
               <p class="title">包含这首歌的歌单</p>
-              <ul>
-                <li v-for="(item, index) in similarPlayList" :key="index">
+              <div>
+                <div
+                  v-for="(item, index) in similarPlayList"
+                  :key="index"
+                  class="simi-item"
+                >
                   <img :src="item.coverImgUrl" alt="" class="avatar" />
                   <div class="description">
                     <p>{{ item.name }}</p>
-                    <p>{{ utils.tranNumber(item.playCount, 0) }}</p>
+                    <p class="count">
+                      播放：{{ utils.tranNumber(item.playCount, 0) }}
+                    </p>
                   </div>
-                </li>
-              </ul>
+                </div>
+              </div>
             </div>
 
             <!-- 相似歌曲 -->
-            <div class="simi-songs" v-if="similarSongs.length">
+            <div class="simi-playlists" v-if="similarSongs.length">
               <p class="title">相似歌曲</p>
-              <ul>
-                <li v-for="(items, indexs) in similarSongs" :key="indexs">
+              <div>
+                <div
+                  v-for="(items, indexs) in similarSongs"
+                  :key="indexs"
+                  class="simi-item"
+                >
                   <img :src="items.album.picUrl" alt="" class="avatar" />
                   <div class="description">
                     <p>{{ items.name }}</p>
-                    <p>{{ items.artists.name }}</p>
+                    <p class="count">{{ items.album.name }}</p>
                   </div>
-                </li>
-              </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -134,6 +174,8 @@
 <script>
 import CommentList from 'components/common/commentList/Index.vue'
 import CommentBox from 'components/common/commentBox/Index.vue'
+import Scroll from 'components/common/scroll/Index'
+import Lyric from 'lyric-parser'
 import { mapGetters, mapState, mapMutations } from 'vuex'
 
 export default {
@@ -150,22 +192,20 @@ export default {
       // 是否清空评论框内容
       clearContent: false,
       similarPlayList: [], //相似歌单和歌曲
-      similarSongs: []
+      similarSongs: [],
+      showLyric: false,
+      currentLyric: null,
+      currentLyricNum: 0
     }
   },
   components: {
     CommentList,
-    CommentBox
+    CommentBox,
+    Scroll
   },
   computed: {
-    ...mapGetters([
-      'userInfo',
-      'loginStatu',
-      'currentSong',
-      'playing',
-      'currentIndex'
-    ]),
-    ...mapState(['isPlayerShow'])
+    ...mapGetters(['userInfo', 'loginStatu', 'currentSong', 'currentIndex']),
+    ...mapState(['isPlayerShow', 'playing'])
   },
   mounted() {},
   //监听数据变化
@@ -174,15 +214,40 @@ export default {
     isPlayerShow(show) {
       if (show) {
         let id = this.currentSong.id
-        // console.log(this.currentSong)
+        this.songId = this.currentSong.id
         this._initialize(id)
+        console.log(this.songId)
       }
     },
     //当前歌曲是否发生改变
-    currentSong(newSong, oldSong) {}
+    currentSong(newSong, oldSong) {
+      if (newSong) {
+        this._initialize(newSong.id)
+      }
+      if (this.currentLyric) {
+        this.currentLyric.stop()
+        // 重置为null
+        this.currentLyric = null
+        this.currentTime = 0
+        this.playingLyric = ''
+        this.currentLyricNum = 0
+      }
+    },
+    $route: {
+      handler() {
+        console.log(this.isPlayerShow)
+      },
+      immediate: true
+    }
   },
   updated() {},
   methods: {
+    // 改变页码
+    handleCurrentChange(val) {
+      this.currentPage = val
+      this.offset = (val - 1) * this.limit
+      this.getSongComments(this.songId)
+    },
     //播放界面组件显示和隐藏
     ...mapMutations({ setPlayerShow: 'SET_PLAYER_SHOW' }),
     getPlayerShowClass() {
@@ -214,7 +279,10 @@ export default {
     },
     //初始化
     _initialize(id) {
+      this.getLyric(id)
       this.getSongComments(id)
+      this.getSimilarPlayList(id)
+      this.getSimilarSongs(id)
     },
     // 提交歌曲评论， t:1 发送, 2 回复
     commentSubmit(content) {
@@ -293,7 +361,7 @@ export default {
     //获取相似歌单和歌曲
     async getSimilarPlayList(id) {
       try {
-        let res = this.$api.getSimilarPlayList(id)
+        let res = await this.$api.getSimilarPlayList(id)
         if (res.code === 200) {
           this.similarPlayList = res.playlists
         } else {
@@ -305,7 +373,7 @@ export default {
     },
     async getSimilarSongs(id) {
       try {
-        let res = this.$api.getSimilarSongs(id)
+        let res = await this.$api.getSimilarSongs(id)
         if (res.code === 200) {
           this.similarSongs = res.songs
         } else {
@@ -313,6 +381,32 @@ export default {
         }
       } catch (error) {
         console.log(error)
+      }
+    },
+    // 获取歌词
+    async getLyric(id) {
+      try {
+        let res = await this.$api.getLyric(id)
+        if (res.code === 200) {
+          let lyric = res.lrc.lyric
+          this.currentLyric = new Lyric(lyric, this.lyricHandle)
+          if (this.isPureMusic) {
+            const timeExp = /\[(\d{2}):(\d{2}):(\d{2})]/g
+            this.pureMusicLyric = this.currentLyric.lrc
+              .replace(timeExp, '')
+              .trim()
+            this.playingLyric = this.pureMusicLyric
+          } else {
+            if (this.playing && this.canLyricPlay) {
+              this.currentLyric.seek(this.currentTime * 1000)
+            }
+            console.log(this.currentLyric)
+          }
+        }
+      } catch (error) {
+        this.currentLyric = null
+        this.playingLyric = ''
+        this.currentLyricNum = 0
       }
     }
   }
@@ -335,7 +429,7 @@ export default {
 
   &.hide {
     // 向下隐藏
-    transform: translateY(105%);
+    transform: translateY(120%);
   }
 
   &.show {
@@ -357,7 +451,7 @@ export default {
 
         .play-bar-support {
           position: absolute;
-          left: 200px;
+          left: 180px;
           width: 30px;
           height: 30px;
           top: -15px;
@@ -368,10 +462,16 @@ export default {
           position: absolute;
           width: 100px;
           height: 146px;
-          top: -25px;
-          right: 80px;
+          top: 0px;
+          right: 138px;
+          transform-origin: 0 0;
           transform: rotate(-30deg);
           transition: all 0.3s;
+          z-index: 980;
+
+          &.playing {
+            transform: rotate(5deg);
+          }
         }
 
         .img-outer-border {
@@ -396,13 +496,20 @@ export default {
             background: linear-gradient(-45deg, #333540, #070708, #333540);
             animation: rotate 20s linear infinite;
 
+            &.paused {
+              animation-play-state: paused;
+            }
+
             .img-wrap {
-              width: 220px;
-              height: 220px;
+              width: 200px;
+              height: 200px;
               flex-shrink: 0;
 
               img {
+                height: 200px;
+                width: 200px;
                 border-radius: 50%;
+                overflow: hidden;
               }
             }
           }
@@ -440,6 +547,11 @@ export default {
 
             .value {
               color: #517eaf;
+              margin-right: 40px;
+              width: 100px;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
             }
           }
         }
@@ -453,11 +565,63 @@ export default {
 
       .left {
         flex: 1;
+
+        .page-wrap {
+          cursor: pointer;
+        }
       }
 
       .right {
+        padding-left: 36px;
+        width: 25%;
+        overflow: hidden;
+
+        .title {
+          font-size: 16px;
+          margin-bottom: 12px;
+          font-weight: bold;
+        }
+
+        .simi-playlists {
+          margin-bottom: 36px;
+
+          .avatar {
+            display: block;
+            width: 50px;
+            height: 50px;
+          }
+
+          .simi-item {
+            display: flex;
+            margin-bottom: 6px;
+            cursor: pointer;
+
+            .description {
+              justify-content: center;
+              margin-left: 5px;
+              align-items: center;
+              overflow: hidden;
+              white-space: nowrap;
+              text-overflow: ellipsis;
+
+              .count {
+                margin-top: 4px;
+              }
+            }
+          }
+        }
       }
     }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(1turn);
   }
 }
 </style>
