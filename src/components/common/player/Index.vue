@@ -24,13 +24,26 @@
                 class="img-outer"
                 ref="discRotate"
               >
-                <div class="img-wrap"></div>
+                <div class="img-wrap">
+                  <img :src="currentSong.image" alt="" />
+                </div>
               </div>
             </div>
           </div>
 
           <!-- 头部歌词 -->
-          <div class="right"></div>
+          <div class="right">
+            <div class="name-wrap">
+              <p class="name">{{ currentSong.name }}</p>
+              <!-- <span @click="onGoMv" class="mv-tag" v-if="currentSong.mvId">MV</span> -->
+            </div>
+            <div class="desc">
+              <div class="desc-item">
+                <span class="label">歌手：</span>
+                <div class="value">{{ currentSong.singer }}</div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <!-- 评论部分 -->
@@ -161,6 +174,7 @@ export default {
     isPlayerShow(show) {
       if (show) {
         let id = this.currentSong.id
+        // console.log(this.currentSong)
         this._initialize(id)
       }
     },
@@ -336,9 +350,99 @@ export default {
       display: flex;
 
       .left {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        padding: 80px 70px 36px 36px;
+
+        .play-bar-support {
+          position: absolute;
+          left: 200px;
+          width: 30px;
+          height: 30px;
+          top: -15px;
+          z-index: 999;
+        }
+
+        .play-bar {
+          position: absolute;
+          width: 100px;
+          height: 146px;
+          top: -25px;
+          right: 80px;
+          transform: rotate(-30deg);
+          transition: all 0.3s;
+        }
+
+        .img-outer-border {
+          width: 320px;
+          height: 320px;
+          border-radius: 50%;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: center;
+          background: #e6e5e6;
+
+          .img-outer {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            background: #000;
+            background: linear-gradient(-45deg, #333540, #070708, #333540);
+            animation: rotate 20s linear infinite;
+
+            .img-wrap {
+              width: 220px;
+              height: 220px;
+              flex-shrink: 0;
+
+              img {
+                border-radius: 50%;
+              }
+            }
+          }
+        }
       }
 
       .right {
+        flex: 1;
+        padding-top: 45px;
+
+        .name-wrap {
+          display: flex;
+          align-items: center;
+          margin-bottom: 16px;
+
+          .name {
+            font-size: 24px;
+            color: #333;
+          }
+        }
+
+        .desc {
+          display: flex;
+          font-size: 8px;
+          margin-bottom: 30px;
+
+          .desc-item {
+            display: flex;
+            margin-right: 32px;
+
+            .label {
+              display: inline-block;
+              margin-right: 4px;
+            }
+
+            .value {
+              color: #517eaf;
+            }
+          }
+        }
       }
     }
 
