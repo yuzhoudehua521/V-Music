@@ -1,12 +1,12 @@
 <template>
   <div class="recommend-songs">
     <h2 class="title">推荐电台</h2>
-    <dj-list :djRadios="djRadios"></dj-list>
+    <dj-box :data="djRadios"></dj-box>
   </div>
 </template>
 
 <script>
-import djList from 'components/common/djList/Index.vue'
+import djBox from 'components/common/djbox/Index.vue'
 export default {
   data() {
     return {
@@ -14,7 +14,7 @@ export default {
     }
   },
   components: {
-    djList
+    djBox
   },
   //监听属性 类似于data概念
   computed: {},

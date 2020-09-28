@@ -18,7 +18,7 @@
           <router-link :to="{ name: 'singer' }" tag="a">歌手</router-link>
         </li>
         <li>
-          <router-link :to="{ name: 'dj' }" tag="a">电台</router-link>
+          <router-link :to="{ name: 'dj' }" tag="a">电台主播</router-link>
         </li>
         <li>
           <router-link :to="{ name: 'video' }" tag="a">视频</router-link>

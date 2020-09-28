@@ -356,3 +356,15 @@ export const getDjHot = () => api.get(`/dj/hot`, {})
  * @method 获取热门推荐电台
  */
 export const getDjType = id => api.get(`/dj/recommend/type?type=${id}`, {})
+
+/**
+ * @method 获取电台节目列表
+ * @params limit 返回数量, 电台节目 的 id
+ */
+export const getDjProgram = id => api.get(`/dj/program?rid=${id}&limit=100`, {})
+
+/**
+ * @method 获取音乐url
+ * @params 具体电台音乐id
+ */
+export const getSongUrl = id => api.get(`/song/url?id=${id}`, {})

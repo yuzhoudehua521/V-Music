@@ -4,7 +4,7 @@
       class="item"
       v-for="(item1, index1) in data"
       :key="index1"
-      :class="[index1 < 8 ? '' : 'Bannerdisplay']"
+      :class="[index1 < limit ? '' : 'Bannerdisplay']"
     >
       <div class="wrapper">
         <div class="cover">
@@ -49,6 +49,10 @@ export default {
     // 接受传过来的dj数据数组
     data: {
       type: Array
+    },
+    limit: {
+      type: Number,
+      default: 24
     }
   },
   computed: {},

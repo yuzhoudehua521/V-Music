@@ -20,43 +20,50 @@
     </el-carousel>
 
     <!-- 分类导航 -->
-    <div class="category"></div>
+    <div class="category">
+      <div class="item">
+        <div class="item-img">
+          <div class="image"></div>
+        </div>
+        <p class="item-title">创造|翻唱</p>
+      </div>
+    </div>
 
     <div class="content">
       <!-- 创作翻唱 -->
       <div class="create">
         <p class="title">创作|翻唱</p>
-        <dj-box :data="djData[0].data"></dj-box>
+        <dj-box :data="djData[0].data" :limit="8"></dj-box>
       </div>
 
       <!-- 商业财经 -->
       <div class="finance">
         <p class="title">商业|财经</p>
-        <dj-box :data="djData[1].data"></dj-box>
+        <dj-box :data="djData[1].data" :limit="8"></dj-box>
       </div>
 
       <!-- 3D -->
       <div class="threeD">
         <p class="title">3D|电子</p>
-        <dj-box :data="djData[2].data"></dj-box>
+        <dj-box :data="djData[2].data" :limit="8"></dj-box>
       </div>
 
       <!-- 音乐故事 -->
       <div class="story">
         <p class="title">音乐|故事</p>
-        <dj-box :data="djData[3].data"></dj-box>
+        <dj-box :data="djData[3].data" :limit="8"></dj-box>
       </div>
 
       <!-- 情感调频 -->
       <div class="emotion">
         <p class="title">情感|调频</p>
-        <dj-box :data="djData[4].data"></dj-box>
+        <dj-box :data="djData[4].data" :limit="8"></dj-box>
       </div>
 
       <!-- 二次元 -->
       <div class="comic">
         <p class="title">二次元</p>
-        <dj-box :data="djData[5].data"></dj-box>
+        <dj-box :data="djData[5].data" :limit="8"></dj-box>
       </div>
     </div>
   </div>
@@ -155,6 +162,41 @@ export default {
     .banner-carousel-img {
       height: 200px;
       border-radius: 4px;
+    }
+  }
+
+  .category {
+    margin-bottom: 100px;
+
+    .item {
+      width: 90px;
+      height: 90px;
+
+      &:hover {
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+
+        .image {
+          transform: translateX(-48px);
+        }
+      }
+
+      .item-title {
+        text-align: center;
+      }
+
+      .item-img {
+        width: 48px;
+        height: 48px;
+        overflow: hidden;
+        margin: 10px auto 0;
+
+        .image {
+          width: 96px;
+          height: 48px;
+          background: url('../../assets/images/huatong.jpg') no-repeat;
+        }
+      }
     }
   }
 
