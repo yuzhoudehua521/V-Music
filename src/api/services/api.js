@@ -351,3 +351,8 @@ export const getDjBanner = () => api.get(`/dj/banner`, {})
  * @method 获取热门推荐电台
  */
 export const getDjHot = () => api.get(`/dj/hot`, {})
+
+/**
+ * @method 获取热门推荐电台
+ */
+export const getDjType = id => api.get(`/dj/recommend/type?type=${id}`, {})
