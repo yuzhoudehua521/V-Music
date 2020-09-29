@@ -21,11 +21,202 @@
 
     <!-- 分类导航 -->
     <div class="category">
-      <div class="item">
-        <div class="item-img">
-          <div class="image"></div>
+      <div>
+        <div class="slide-item">
+          <div class="slide-item-img">
+            <div class="slide-image">
+              <img src="../../assets/images/slides.png" alt="" />
+            </div>
+          </div>
         </div>
-        <p class="item-title">创造|翻唱</p>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/huatong.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">创造|翻唱</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/erji.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">3D|电子</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/xiaolian.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">情感调频</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/yinyue.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">音乐故事</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/erciyuan.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">二次元</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/shu.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">有声书</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/diandeng.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">知识技能</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/caijing.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">商业财经</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/renwen.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">人文历史</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/waiyu.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">外语世界</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/qinzi.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">亲子宝贝</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/xiangsheng.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">相声曲艺</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/meiwen.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">美文读物</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/tuokouxiu.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">脱口秀</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/guangbo.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">广播剧</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/yule.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">娱乐|影视</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/mingxing.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">明星做主播</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/xiaoyuan.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">校园|教育</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/feiji.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">旅途|城市</p>
+        </div>
+
+        <div class="item">
+          <div class="item-img">
+            <div class="image">
+              <img src="../../assets/images/keji.jpg" alt="" />
+            </div>
+          </div>
+          <p class="item-title">科技科学</p>
+        </div>
+
+        <div class="slide-item">
+          <div class="slide-item-img">
+            <div class="slide-image-right">
+              <img src="../../assets/images/slides.png" alt="" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -166,11 +357,57 @@ export default {
   }
 
   .category {
-    margin-bottom: 100px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    display: block;
+    overflow: auto;
+    white-space: nowrap;
+
+    .slide-item {
+      display: inline-block;
+      width: 69px;
+      height: 69px;
+      cursor: pointer;
+
+      .slide-item-img {
+        width: 41px;
+        height: 69px;
+        overflow: hidden;
+        margin: 10px auto 0;
+
+        .slide-image {
+          width: 166px;
+          height: 69px;
+
+          &:hover {
+            transform: translateX(84px);
+          }
+
+          img {
+            transform: translateX(-84px);
+          }
+        }
+
+        .slide-image-right {
+          width: 166px;
+          height: 69px;
+
+          &:hover {
+            transform: translateX(83px);
+          }
+
+          img {
+            transform: translateX(-125px);
+          }
+        }
+      }
+    }
 
     .item {
+      display: inline-block;
       width: 90px;
       height: 90px;
+      cursor: pointer;
 
       &:hover {
         background: rgba(0, 0, 0, 0.2);
@@ -194,7 +431,6 @@ export default {
         .image {
           width: 96px;
           height: 48px;
-          background: url('../../assets/images/huatong.jpg') no-repeat;
         }
       }
     }
