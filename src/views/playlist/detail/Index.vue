@@ -14,8 +14,10 @@
             <div class="avatar" @click="toUser(creator.userId)">
               <img :src="creator.avatarUrl + '?param=100y100'" alt="" />
             </div>
-            <p class="nickname" @click="toUser(creator.userId)">{{ creator.nickname }}</p>
-            <p class="createTime" v-if="detail.createTime"> 
+            <p class="nickname" @click="toUser(creator.userId)">
+              {{ creator.nickname }}
+            </p>
+            <p class="createTime" v-if="detail.createTime">
               {{ utils.dateFormat(detail.createTime, 'YYYY-MM-DD') }}创建
             </p>
           </div>
@@ -68,7 +70,9 @@
             </div>
           </li>
         </ul>
-        <p class="no-data-text" v-else style="padding-bottom: 10px;">还没有人喜欢</p>
+        <p class="no-data-text" v-else style="padding-bottom: 10px;">
+          还没有人喜欢
+        </p>
       </div>
       <div class="related module shadow">
         <div class="card-header flex-row">
@@ -118,7 +122,9 @@
             </div>
           </li>
         </ul>
-        <p class="no-data-text" v-else style="padding-bottom: 10px;">还没有人评论</p>
+        <p class="no-data-text" v-else style="padding-bottom: 10px;">
+          还没有人评论
+        </p>
       </div>
     </div>
   </div>
@@ -190,7 +196,7 @@ export default {
         let res = await this.$api.getPlayListDetail(id, s, timestamp)
         console.log(res)
         if (res.code === 200) {
-          if(res.playlist.description !== null) {
+          if (res.playlist.description !== null) {
             res.playlist.description = res.playlist.description.replace(
               /(\r\n|\n|\r)/gm,
               '<br />'
@@ -208,7 +214,7 @@ export default {
           this.getSongDetail(sliceArr)
         }
       } catch (error) {
-        // this.$message.error(error)
+        console.log(error)
       }
     },
     // 获取歌曲列表
@@ -370,14 +376,17 @@ export default {
 .playlist-detail {
   display: flex;
   align-items: flex-start;
+
   .left {
     flex: 1;
     width: 950px;
     padding: 15px;
     border-radius: 8px;
     margin-right: 20px;
+
     .top {
       display: flex;
+
       > .avatar {
         width: 200px;
         height: 200px;
@@ -385,12 +394,14 @@ export default {
         position: relative;
         margin-right: 30px;
         flex-shrink: 0;
+
         img {
           width: 100%;
           height: 100%;
           border-radius: 8px;
           position: relative;
         }
+
         &::before {
           content: '';
           width: 95%;
@@ -404,10 +415,12 @@ export default {
           border-radius: 8px;
         }
       }
+
       .info {
         display: flex;
         flex-direction: column;
         justify-content: center;
+
         .title {
           width: 100%;
           font-size: 24px;
@@ -419,6 +432,7 @@ export default {
           -webkit-line-clamp: 2;
           overflow: hidden;
         }
+
         .tag {
           // margin-top: 15px;
           // margin-bottom: 15px;
@@ -430,18 +444,22 @@ export default {
             cursor: pointer;
             padding: 4px 12px;
             border-radius: 15px;
+
             &::after {
               // content: '，'
             }
+
             &:last-child {
               &::after {
-                content: ''
+                content: '';
               }
             }
           }
         }
+
         .user {
           margin-bottom: 15px;
+
           .avatar {
             width: 30px;
             height: 30px;
@@ -449,6 +467,7 @@ export default {
             position: relative;
             margin-right: 15px;
             cursor: pointer;
+
             img {
               width: 100%;
               height: 100%;
@@ -456,29 +475,35 @@ export default {
               position: relative;
             }
           }
+
           .nickname {
             font-size: 14px;
             margin-right: 30px;
             cursor: pointer;
+
             &:hover {
               color: $color-theme;
             }
           }
+
           .createTime {
             font-size: 14px;
             color: #808080;
           }
         }
+
         .desc {
           display: flex;
           flex-direction: column;
           line-height: 1.6;
           margin-top: 15px;
+
           span {
             flex-shrink: 0;
             color: $color-theme;
             cursor: pointer;
           }
+
           p {
             line-height: 1.6;
             font-weight: 400;
@@ -488,32 +513,40 @@ export default {
         }
       }
     }
+
     .content {
       margin-top: 20px;
     }
   }
+
   .right {
     width: 350px;
     flex-shrink: 0;
+
     .module {
       padding: 15px;
       width: 100%;
       border-radius: 8px;
       margin-bottom: 20px;
     }
+
     .like {
       padding-bottom: 5px;
+
       ul {
         display: flex;
         flex-wrap: wrap;
         margin: 0 -5px;
+
         li {
           flex: 0 0 14.285714285714%;
           max-width: 14.285714285714%;
           padding: 0 5px 10px;
+
           .avatar {
             width: 100%;
             border-radius: 3px;
+
             img {
               width: 100%;
               border-radius: 3px;
@@ -522,24 +555,29 @@ export default {
         }
       }
     }
+
     .related {
       padding-bottom: 5px;
+
       ul {
         li {
           display: flex;
           margin-bottom: 15px;
           cursor: pointer;
+
           .avatar {
             width: 50px;
             height: 50px;
             border-radius: 3px;
             margin-right: 15px;
             flex-shrink: 0;
+
             img {
               width: 100%;
               border-radius: 3px;
             }
           }
+
           .info {
             height: 50px;
             width: calc(100% - 60px);
@@ -547,15 +585,18 @@ export default {
             display: flex;
             justify-content: center;
             flex-direction: column;
+
             h2 {
               font-size: 14px;
               margin-bottom: 10px;
               width: 100%;
             }
+
             span {
               font-size: 12px;
               color: #a5a5c1;
             }
+
             &:hover {
               h2 {
                 color: $color-theme;
@@ -565,12 +606,14 @@ export default {
         }
       }
     }
+
     .comment {
       ul {
         li {
           padding: 10px 0;
           width: 100%;
           display: flex;
+
           .avatar {
             width: 45px;
             height: 45px;
@@ -578,24 +621,29 @@ export default {
             margin-right: 12px;
             flex-shrink: 0;
             cursor: pointer;
+
             img {
               width: 100%;
               border-radius: 50%;
             }
           }
+
           .info {
             flex: 1;
+
             h2 {
               font-size: 15px;
               margin-right: 5px;
               margin-bottom: 10px;
               cursor: pointer;
+
               small {
                 font-size: 12px;
                 color: #a5a5c1;
                 font-weight: 200;
               }
             }
+
             p {
               width: 100%;
               font-size: 12px;
@@ -610,12 +658,14 @@ export default {
         }
       }
     }
+
     .card-header {
       border-left: 3px solid $color-theme;
       height: 20px;
       padding-left: 1rem;
       margin-bottom: 15px;
       font-weight: bold;
+
       .icon-like {
         font-size: 20px;
       }

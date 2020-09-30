@@ -358,6 +358,12 @@ export const getDjHot = () => api.get(`/dj/hot`, {})
 export const getDjType = id => api.get(`/dj/recommend/type?type=${id}`, {})
 
 /**
+ * @method 获取电台节目详情
+ * @params 电台节目的id
+ */
+export const getDjInformation = id => api.get(`/dj/program/detail?id=${id}`, {})
+
+/**
  * @method 获取电台节目列表
  * @params limit 返回数量, 电台节目 的 id
  */

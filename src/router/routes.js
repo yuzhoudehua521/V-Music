@@ -200,6 +200,17 @@ export const appRouter = [
         component: resolve => {
           require(['@/views/dj/Index.vue'], resolve)
         }
+      },
+      {
+        path: 'dj-detail',
+        meta: {
+          title: '详情',
+          keepAlive: true
+        },
+        name: 'djDetail',
+        component: resolve => {
+          require(['@/views/dj/detail/Index.vue'], resolve)
+        }
       }
     ]
   }

@@ -21,7 +21,7 @@
         <textarea
           name="comment"
           v-model="commentContent"
-          placeholder="说点什么吧！"
+          placeholder="你看什么看！"
           tabindex="4"
           cols="50"
           rows="5"
@@ -91,16 +91,13 @@ export default {
 <style lang="stylus" scoped>
 .comment-box {
   margin-top: 20px;
-
   p {
     i {
       margin-right: 10px;
     }
-
     span {
       flex: 1;
     }
-
     .cancel-comment {
       color: #d9dfff;
       font-size: 12px;
@@ -111,11 +108,9 @@ export default {
       cursor: pointer;
     }
   }
-
   .comment-form {
     display: flex;
     margin-top: 1.5em;
-
     .avatar {
       width: 50px;
       height: 50px;
@@ -123,16 +118,13 @@ export default {
       margin-right: 20px;
       position: relative;
       flex-shrink: 0;
-
       img {
         width: 100%;
         border-radius: 3px;
       }
     }
-
     .comarea {
       flex: 1;
-
       textarea {
         width: 100%;
         outline: none;
@@ -148,10 +140,8 @@ export default {
     }
   }
 }
-
 .comment-foot {
   margin-top: 15px;
-
   .comment-btn {
     color: #fff;
     padding: 10px 30px;
@@ -160,8 +150,8 @@ export default {
     border: none;
     cursor: pointer;
     outline: none;
-    background: #FF416C; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C); /* Chrome 10-25, Safari 5.1-6 */
+    background: #FF416C;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #FF4B2B, #FF416C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   }
 }

@@ -27,7 +27,6 @@ export default {
     async getPersonalized() {
       try {
         let res = await this.$api.getPersonalized(this.limit)
-        // console.log(res)
         this.personalizeds = res.result
       } catch (error) {
         console.log(error)
@@ -45,6 +44,7 @@ export default {
 <style lang="stylus" scoped>
 .recommend-songs {
   margin-top: 40px;
+
   .title {
     margin: 0 0 15px 0;
   }

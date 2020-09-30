@@ -347,11 +347,11 @@ export default {
   .banner-carousel {
     // 在vue项目中使用/deep/  来强制修改elementUI组件样式
     /deep/ .el-carousel__container {
-      height: 200px;
+      height: 250px;
     }
 
     .banner-carousel-img {
-      height: 200px;
+      height: 250px;
       border-radius: 4px;
     }
   }

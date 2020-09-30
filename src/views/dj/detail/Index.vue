@@ -11,14 +11,51 @@
 </template>
 
 <script>
-import ArtistList from 'components/common/artistList/Index'
+import djList from 'components/common/djList/Index'
 
 export default {
   components: {
-    ArtistList
+    djList
+  },
+  data() {
+    return {
+      djId: '',
+      djInfo: {},
+      djProgramList: []
+    }
+  },
+  mounted() {
+    let id = this.$route.query.id
+    this.djId = id
+  },
+  methods: {
+    //1获取dj详细信息
+    async getDjInformation(id) {
+      try {
+        let res = await this.$api.getDjInformation(id)
+        if (res.code === 200) {
+          this.djInfo = res.program
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    },
+    //2获取点击节目列表
+    async getDjProgram(id) {
+      try {
+        let res = await this.$api.getDjProgram(id)
+        if (res.code === 200) {
+          this.djProgramList = res.programs
+        }
+      } catch (err) {
+        console.log(err)
+      }
+    },
+
+    //初始化函数
+    _initialize(id) {}
   }
 }
 </script>
 
-<style>
-</style>
+<style lang="stylus" scoped></style>
