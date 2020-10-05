@@ -1,11 +1,14 @@
 <template>
   <div id="app">
+    <!-- v-if="!$route.meta.isLogin" 登陆界面不显示组件 -->
     <nice-header v-if="!$route.meta.isLogin"></nice-header>
     <router-view />
     <player-bar v-if="!$route.meta.isLogin"></player-bar>
     <player v-if="!$route.meta.isLogin"></player>
     <nice-footer v-if="!$route.meta.isLogin"></nice-footer>
     <back-top v-if="!$route.meta.isLogin"></back-top>
+
+    <!-- 背景样式 -->
     <div class="fly bg-fly-circle1"></div>
     <div class="fly bg-fly-circle2"></div>
     <div class="fly bg-fly-circle3"></div>

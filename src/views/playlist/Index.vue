@@ -54,7 +54,10 @@
         </div>
       </div>
     </div>
-    <song-sheet :sheetList="playList" v-loading="fullscreenLoading"></song-sheet>
+    <song-sheet
+      :sheetList="playList"
+      v-loading="fullscreenLoading"
+    ></song-sheet>
     <div class="page-wrap">
       <el-pagination
         @size-change="handleSizeChange"
@@ -228,7 +231,6 @@ export default {
   created() {},
   mounted() {
     let cat = this.$route.query.cat
-    console.log(cat)
     if (cat) {
       this.currentCat = cat
     }
@@ -278,14 +280,16 @@ export default {
       position: relative;
       margin-right: 15px;
       position: relative;
+
       &::after {
-        content: ''
+        content: '';
         width: 1px;
         height: 20px;
         margin-left: 12px;
         background: #e7e7e7;
         opacity: 0;
       }
+
       > i {
         transform: rotate(90deg);
         margin-left: 10px;
@@ -304,23 +308,28 @@ export default {
         top: 50px;
         z-index: 100;
         padding: 15px 10px 0 16px;
+
         .item {
           margin-bottom: 20px;
+
           h2 {
             display: flex;
             align-items: center;
             font-size: 15px;
             margin-bottom: 15px;
             color: #161e27;
+
             i {
               font-size: 18px;
               margin-right: 5px;
               margin-top: -1px;
             }
           }
+
           ul {
             display: flex;
             flex-wrap: wrap;
+
             li {
               padding: 8px 18px;
               background: #f7f7f7;
@@ -330,10 +339,12 @@ export default {
               font-size: 12px;
               color: #161e27;
               transition: all 0.4s;
+
               &:hover {
                 color: #fff;
                 background: $color-theme;
               }
+
               &.active {
                 color: #fff;
                 background: $color-theme;
@@ -347,24 +358,30 @@ export default {
         // border: 1px solid #cccccc;
       }
     }
+
     .hot-tag {
       flex: 1;
+
       ul {
         li {
           margin: 0 5px;
           padding-right: 10px;
-          cursor: pointer
+          cursor: pointer;
+
           &:hover {
             color: #888;
           }
+
           &.active {
             color: $color-theme;
           }
         }
       }
     }
+
     .type {
       display: flex;
+
       .item {
         margin-left: 20px;
         background: #f7f7f7;
@@ -374,13 +391,16 @@ export default {
         border-radius: 3px;
         transition: all 0.4s;
         cursor: pointer;
+
         &.active {
           background: $color-theme;
           color: #fff;
+
           &:hover {
             color: #fff;
           }
         }
+
         &:hover {
           color: #666;
         }

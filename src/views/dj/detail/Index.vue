@@ -64,15 +64,18 @@ export default {
   data() {
     return {
       djId: '',
-      djInfo: {},
+      djInfo: {
+        dj: {}
+      },
       djProgramList: []
     }
   },
-  mounted() {
+  created() {
     let id = this.$route.query.id
     this.djId = id
     this._initialize(id)
   },
+  mounted() {},
   watch: {
     $route(newId, oldId) {
       console.log(newId, oldId)

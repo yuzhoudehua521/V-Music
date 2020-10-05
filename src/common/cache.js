@@ -1,4 +1,7 @@
 import storage from 'good-storage'
+// storage.set(key,val)  //设置
+// storage.get(key)  //获取
+// remove(key) //删除
 
 const SEARCH_KEY = '__search__'
 const SEARCH_MAX = 15
@@ -12,11 +15,11 @@ function insertArray(arr, val, compare, maxLen) {
   if (index === 0) {
     return
   }
-  if(index > 0) {
+  if (index > 0) {
     arr.splice(index, 1)
   }
   arr.unshift(val)
-  if(maxLen && arr.length > maxLen) {
+  if (maxLen && arr.length > maxLen) {
     arr.pop()
   }
 }
@@ -32,9 +35,14 @@ function deleteFromArray(arr, compare) {
 // 存储历史搜索数据
 export function saveSearch(query) {
   let searches = storage.get(SEARCH_KEY, [])
-  insertArray(searches, query, item => {
-    return item === query
-  }, SEARCH_MAX)
+  insertArray(
+    searches,
+    query,
+    item => {
+      return item === query
+    },
+    SEARCH_MAX
+  )
   storage.set(SEARCH_KEY, searches)
   return searches
 }
@@ -63,9 +71,14 @@ export function clearSearch() {
 // 添加最近播放列表
 export function saveHistory(song) {
   let songs = storage.get(HISTORY_KEY, [])
-  insertArray(songs, song, (item) => {
-    return song.id === item.id
-  }, HISTORY_MAX_LENGTH)
+  insertArray(
+    songs,
+    song,
+    item => {
+      return song.id === item.id
+    },
+    HISTORY_MAX_LENGTH
+  )
   storage.set(HISTORY_KEY, songs)
   return songs
 }
@@ -73,7 +86,7 @@ export function saveHistory(song) {
 // 移除最近播放列表
 export function deleteHistory(song) {
   let songs = storage.get(HISTORY_KEY, [])
-  deleteFromArray(songs, (item) => {
+  deleteFromArray(songs, item => {
     return song.id === item.id
   })
   storage.set(HISTORY_KEY, songs)

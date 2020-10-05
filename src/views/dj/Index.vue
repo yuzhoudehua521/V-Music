@@ -21,15 +21,15 @@
 
     <!-- 分类导航 -->
     <div class="category">
-      <div>
-        <div class="slide-item">
-          <div class="slide-item-img">
-            <div class="slide-image">
-              <img src="../../assets/images/slides.png" alt="" />
-            </div>
+      <div class="slide-item slide-item-left" @click="moveLeft">
+        <div class="slide-item-img">
+          <div class="slide-image">
+            <img src="../../assets/images/slides.png" alt="" />
           </div>
         </div>
+      </div>
 
+      <div class="category-item">
         <div class="item">
           <div class="item-img">
             <div class="image">
@@ -209,12 +209,12 @@
           </div>
           <p class="item-title">科技科学</p>
         </div>
+      </div>
 
-        <div class="slide-item">
-          <div class="slide-item-img">
-            <div class="slide-image-right">
-              <img src="../../assets/images/slides.png" alt="" />
-            </div>
+      <div class="slide-item slide-item-right" @click="moveRight">
+        <div class="slide-item-img">
+          <div class="slide-image-right">
+            <img src="../../assets/images/slides.png" alt="" />
           </div>
         </div>
       </div>
@@ -299,10 +299,9 @@ export default {
       ]
     }
   },
-  mounted() {
+  created() {
     this.getDjBanner()
     this.getAllData(this.djData)
-    console.log(this.djData)
   },
   computed: {
     bannersInit() {
@@ -334,7 +333,10 @@ export default {
       data.forEach(item => {
         this.getDjDate(item)
       })
-    }
+    },
+    //移动分类
+    moveLeft() {},
+    moveRight() {}
   }
 }
 </script>
@@ -362,6 +364,17 @@ export default {
     display: block;
     overflow: auto;
     white-space: nowrap;
+
+    .slide-item-left {
+      position: fixed;
+      left: -10px;
+    }
+
+    .slide-item-right {
+      position: fixed;
+      right: -10px;
+      transform: translateY(-95px);
+    }
 
     .slide-item {
       display: inline-block;

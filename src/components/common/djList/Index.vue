@@ -8,6 +8,12 @@
       <div class="item">
         <i class="iconfont niceicon-heart">订阅</i>
       </div>
+
+      <div v-for="(item, index) in songList" :key="index">
+        <span>
+          {{ item }}
+        </span>
+      </div>
     </div>
 
     <table class="body">
@@ -26,6 +32,11 @@
           <td>
             <div class="index">
               <span class="num">{{ utils.formatZero(index + 1, 2) }}</span>
+              <i
+                class="iconfont nicebofang2 play-btn"
+                @click="playSong(item, index)"
+              ></i>
+              <i class="iconfont nicezanting1 pause-btn"></i>
             </div>
           </td>
           <td>
@@ -64,25 +75,46 @@ import { mapGetters, mapActions } from 'vuex'
 
 export default {
   data() {
-    return {}
+    return {
+      songList: []
+    }
   },
   props: {
     djProgramList: {
       type: Array
     }
   },
-  mounted() {},
+  created() {
+    this.getSongList(this.djProgramList)
+  },
+  computed: {
+    ...mapGetters(['currentIndex', 'playing', 'currentSong'])
+  },
   methods: {
     //根据获得播放列表的电台id，进一步获得MP3播放地址
     async getSong(id) {
       try {
         let res = await this.$api.getSongUrl(id)
         if (res.code === 200) {
-          let data = res.data
+          return res.data.url
         }
       } catch (error) {
         console.log(error)
       }
+    },
+    //获取电台节目列表
+    getSongList(arr) {
+      // for (let i = 0; i < arr.length; i++) {
+      //   let songUrl = this.getSong(arr[i].mainSong.id)
+      //   this.songList.push(songUrl)
+      // }
+      let newArr = []
+      arr.forEach(function(item) {
+        let songUrl = this.getSong(item.mainSong.id)
+        newArr.push(songUrl.url)
+      })
+
+      this.songList = newArr
     }
   }
 }
@@ -167,6 +199,16 @@ export default {
 
         &:hover {
           background: #e8e9ed;
+
+          .index {
+            .num {
+              display: none;
+            }
+
+            .play-btn {
+              display: block;
+            }
+          }
         }
 
         td {
@@ -176,9 +218,26 @@ export default {
           text-overflow: ellipsis;
 
           .index {
-            color: #4a4a4a;
-            font-weight: 500;
             text-align: center;
+
+            .num {
+              color: #4a4a4a;
+              font-weight: 500;
+            }
+
+            .play-btn {
+              color: #fa2800;
+              font-size: 28px;
+              display: none;
+              cursor: pointer;
+            }
+
+            .pause-btn {
+              color: #fa2800;
+              font-size: 30px;
+              display: none;
+              cursor: pointer;
+            }
           }
 
           .name {
