@@ -56,10 +56,11 @@
 $ git clone https://github.com/yuzhoudehua521/V-Music.git
 $ npm install
 $ npm run serve
-
+```
 
 ## 说明
+> 具有完整的网易云音乐功能
 
->  如果对您对此项目有兴趣，可以点 "Star" 支持一下 谢谢！ ^_^
+> 如果对您对此项目有兴趣，可以点 "Star" 支持一下 谢谢！ ^_^
 
->  或者您可以 "follow" 一下，我会不断开源更多的有趣的项目
+> 或者您可以 "follow" 一下，我会不断开源更多的有趣的项目，不断完善此项目
