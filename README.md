@@ -1,6 +1,8 @@
 # V-Music 仿网易云音乐
 
-## 感谢
+## 技术栈：vue2 + vuex + vue-router + webpack + ES6/7 + stylus + element-ui + iconfont
+
+## 感谢Binaryify提供后端接口
 [Binaryify/NeteaseCloudMusicApi](https://github.com/Binaryify/NeteaseCloudMusicApi)
 
 
@@ -54,3 +56,10 @@
 $ git clone https://github.com/yuzhoudehua521/V-Music.git
 $ npm install
 $ npm run serve
+
+
+## 说明
+
+>  如果对您对此项目有兴趣，可以点 "Star" 支持一下 谢谢！ ^_^
+
+>  或者您可以 "follow" 一下，我会不断开源更多的有趣的项目
