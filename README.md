@@ -12,5 +12,7 @@
 
 ##安装运行
 $ git clone https://github.com/yuzhoudehua521/V-Music.git
+
 $ npm install
+
 $ npm run serve
