@@ -51,7 +51,7 @@
 ##### |   |--main.js 入口文件
 
 
-##安装运行
+## 安装运行
 ```shell
 $ git clone https://github.com/yuzhoudehua521/V-Music.git
 $ npm install
