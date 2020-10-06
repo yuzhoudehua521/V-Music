@@ -29,7 +29,12 @@
         </div>
       </div>
 
-      <div class="category-item">
+      <div
+        :class="{
+          categoryItemLeft: isCategoryLeft,
+          categoryItemRight: isCategoryRight
+        }"
+      >
         <div class="item">
           <div class="item-img">
             <div class="image">
@@ -296,7 +301,10 @@ export default {
           id: '3001', //二次元
           data: []
         }
-      ]
+      ],
+      isCategoryLeft: false,
+      isCategoryRight: false,
+      clickMove: 0
     }
   },
   created() {
@@ -335,8 +343,17 @@ export default {
       })
     },
     //移动分类
-    moveLeft() {},
-    moveRight() {}
+    moveLeft() {
+      if (this.clickMove) {
+        this.isCategoryLeft = true
+      } else {
+        this.isCategoryLeft = false
+      }
+    },
+    moveRight() {
+      this.isCategoryRight = true
+      this.clickMove++
+    }
   }
 }
 </script>
@@ -364,6 +381,7 @@ export default {
     display: block;
     overflow: auto;
     white-space: nowrap;
+    padding: 10px 0;
 
     .slide-item-left {
       position: fixed;
@@ -374,6 +392,14 @@ export default {
       position: fixed;
       right: -10px;
       transform: translateY(-95px);
+    }
+
+    .categoryItemLeft {
+      transform: translateX(100px);
+    }
+
+    .categoryItemRight {
+      transform: translateX(-100px);
     }
 
     .slide-item {

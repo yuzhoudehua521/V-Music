@@ -135,6 +135,7 @@ export default {
       justify-content: center;
       align-items: center;
       font-size: 15px;
+      cursor: pointer;
     }
 
     .item-play {

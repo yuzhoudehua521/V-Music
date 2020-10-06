@@ -234,8 +234,8 @@ export default {
       }
     },
     $route: {
-      handler() {
-        // console.log(this.isPlayerShow)
+      handler: function() {
+        this.setPlayerShow((this.isPlayerShow = false))
       },
       immediate: true
     }

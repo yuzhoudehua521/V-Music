@@ -47,6 +47,7 @@ export default {
   width: 100px;
   height: 100px;
   border-radius: 50%;
+  // linear-gradient() 函数用于创建一个表示两种或多种颜色线性渐变的图片。
   background: linear-gradient(to right, rgba(100, 84, 239, 0.07) 0%, rgba(48, 33, 236, 0.04) 100%);
   animation: move 2.5s linear infinite;
 }
