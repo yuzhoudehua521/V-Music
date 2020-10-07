@@ -6,6 +6,8 @@ import getApi from '@/api/index'
 import utils from '@/utils/utils'
 
 import infiniteScroll from 'vue-infinite-scroll'
+import VueLazyload from 'vue-lazyload'
+
 
 import niceLoading from '@/components/common/loading/Index.vue'
 import niceEmpty from '@/components/common/empty/Index.vue'
@@ -61,6 +63,8 @@ Vue.use(Avatar)
   .use(CarouselItem)
 
 Vue.use(infiniteScroll)
+Vue.use(VueLazyload)
+
 Vue.prototype.$api = getApi
 Vue.prototype.utils = utils
 

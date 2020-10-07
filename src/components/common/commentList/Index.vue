@@ -5,7 +5,7 @@
       <li class="item" v-for="item of commentList" :key="item.commentId">
         <div class="avatar">
           <img
-            :src="item.user.avatarUrl + '?param=150y150'"
+            v-lazy="item.user.avatarUrl + '?param=150y150'"
             :alt="item.user.nickname"
             :title="item.user.nickname"
           />
@@ -102,37 +102,45 @@ export default {
 <style lang="stylus" scoped>
 .comment-list {
   margin-top: 20px;
+
   h3 {
     margin-bottom: 15px;
     font-size: 16px;
   }
+
   ul {
     li {
       padding: 10px 0;
       width: 100%;
       display: flex;
+
       .avatar {
         width: 45px;
         height: 45px;
         border-radius: 50%;
         margin-right: 12px;
         flex-shrink: 0;
+
         img {
           width: 100%;
           border-radius: 50%;
         }
       }
+
       .info {
         flex: 1;
+
         h2 {
           font-size: 15px;
           margin-right: 5px;
           margin-bottom: 10px;
+
           small {
             font-size: 12px;
             color: #a5a5c1;
             font-weight: 200;
           }
+
           .tool {
             i {
               font-size: 24px;
@@ -140,20 +148,23 @@ export default {
               margin-left: 20px;
               cursor: pointer;
               transition: all 0.4s;
+
               &.icon-zan {
                 &.active {
                   color: $color-theme;
                 }
               }
             }
+
             span {
               font-size: 12px;
               margin-top: 2px;
               color: #666;
               font-weight: 200;
               position: relative;
+
               &::after {
-                content: "";
+                content: '';
                 width: 1px;
                 height: 13px;
                 background: #4a4a4a;
@@ -165,6 +176,7 @@ export default {
             }
           }
         }
+
         .content {
           width: 100%;
           font-size: 12px;
@@ -174,12 +186,14 @@ export default {
           background: #f5f5f5;
           margin-top: 5px;
           border-radius: 3px;
+
           .beReqlied {
             margin-top: 10px;
             background: #ffffff;
             padding: 8px 10px;
             border-radius: 3px;
             color: #666666;
+
             small {
               color: $color-theme;
             }

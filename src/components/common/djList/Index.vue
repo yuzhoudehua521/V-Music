@@ -42,7 +42,7 @@
           <td>
             <div class="name">
               <div class="avatar">
-                <img :src="item.coverUrl" alt="" />
+                <img v-lazy="item.coverUrl" alt="" />
               </div>
               <span>{{ item.name }}</span>
             </div>
