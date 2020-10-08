@@ -4,7 +4,7 @@
       <kinesis-element :parallaxStrength="4" :type="parallax">
         <div class="login-box">
           <img src="../../assets/images/logo-a.png" class="nice-logo" />
-          <p>NICEMUSIC</p>
+          <p>V-MUSIC</p>
           <div class="login-form">
             <el-form :model="ruleForm" :rules="rules" ref="ruleForm">
               <div class="login-input">
@@ -155,7 +155,7 @@ export default {
 </script>
 
 <style lang="stylus">
-  .login-wrap {
+.login-wrap {
   width: 100%;
   min-height: 100vh;
   display: -webkit-box;
@@ -167,7 +167,8 @@ export default {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background: #5dd5c8 url(../../assets/images/newbg1.png) center bottom no-repeat;
+  background: #5dd5c8 url('../../assets/images/newbg1.png') center bottom no-repeat;
+
   .login-box {
     overflow: hidden;
     height: 486px;
@@ -176,9 +177,9 @@ export default {
     max-width: 350px;
     margin: 4em auto;
     background: #FFF;
-    background-image: url(../../assets/images/logbg.jpg);
+    background-image: url('../../assets/images/logbg.jpg');
     border-radius: 8px;
-    box-shadow: 1px 2px 15px rgba(0,0,0,.3);
+    box-shadow: 1px 2px 15px rgba(0, 0, 0, 0.3);
     background-repeat: no-repeat;
     background-position: bottom;
     text-align: center;
@@ -190,6 +191,7 @@ export default {
     -moz-transition-duration: 0.3s;
     transition-duration: 0.3s;
     z-index: 80;
+
     .switch {
       font-size: 13px;
       position: absolute;
@@ -199,21 +201,26 @@ export default {
       text-align: center;
       color: #0ef3da;
       cursor: pointer;
+
       b {
         color: #0ef3da;
         font-weight: 600;
       }
     }
+
     .nice-logo {
       width: 55px;
       margin: 40px 0 0px;
     }
+
     p {
       margin-bottom: 45px;
     }
+
     .login-form {
       width: 296px;
       margin: 0 auto;
+
       .login-title {
         font-size: 24px;
         color: #333333;
@@ -223,11 +230,13 @@ export default {
         display: block;
         padding-bottom: 54px;
       }
+
       .login-input {
         position: relative;
         width: 100%;
         z-index: 1;
         margin-bottom: 10px;
+
         .login-text {
           font-size: 14px;
           line-height: 1.5;
@@ -238,6 +247,7 @@ export default {
           height: 42px;
           border-radius: 3px;
           padding: 0 30px 0 45px;
+
           .el-input__inner {
             font-size: 14px;
             line-height: 1.5;
@@ -247,14 +257,14 @@ export default {
             border: 0;
             height: 40px;
             padding: 0;
-            &:-webkit-autofill,
-            &:-webkit-autofill:hover,
-            &:-webkit-autofill:focus {
-              box-shadow:0 0 0 60px #fff inset;
+
+            &:-webkit-autofill, &:-webkit-autofill:hover, &:-webkit-autofill:focus {
+              box-shadow: 0 0 0 60px #fff inset;
               color: #666666;
             }
           }
         }
+
         .login-focus {
           display: block;
           position: absolute;
@@ -267,6 +277,7 @@ export default {
           box-shadow: 0px 0px 0px 0px;
           color: rgba(230, 230, 230, 0.8);
         }
+
         .login-symbol {
           font-size: 15px;
           display: -webkit-box;
@@ -289,6 +300,7 @@ export default {
           -moz-transition: all 0.4s;
           transition: all 0.4s;
         }
+
         .login-text {
           .el-input__inner:focus + .el-input__inner {
             -webkit-animation: anim-shadow 0.5s ease-in-out forwards;
@@ -296,6 +308,7 @@ export default {
           }
         }
       }
+
       .login-footer {
         width: 100%;
         display: -webkit-box;
@@ -306,6 +319,7 @@ export default {
         flex-wrap: wrap;
         justify-content: center;
         padding-top: 10px;
+
         .login-btn-wrap {
           width: 100%;
           display: block;
@@ -314,6 +328,7 @@ export default {
           border-radius: 3px;
           overflow: hidden;
           margin: 0 auto;
+
           .login-btn-bg {
             position: absolute;
             z-index: -1;
@@ -328,6 +343,7 @@ export default {
             -moz-transition: all 0.4s;
             transition: all 0.4s;
           }
+
           .login-btn {
             font-size: 15px;
             line-height: 1.5;
@@ -347,6 +363,7 @@ export default {
             align-items: center;
             padding: 0 25px;
           }
+
           &:hover .login-btn-bg {
             left: 0;
           }
@@ -356,7 +373,7 @@ export default {
   }
 }
 
-@-webkit-keyframes anim-shadow {
+@keyframes anim-shadow {
   to {
     box-shadow: 0px 0px 70px 25px;
     opacity: 0;

@@ -2,7 +2,11 @@
   <div id="app">
     <!-- v-if="!$route.meta.isLogin" 登陆界面不显示组件 -->
     <nice-header v-if="!$route.meta.isLogin"></nice-header>
-    <router-view />
+    <keep-alive>
+      <!-- 缓存视图组件 -->
+      <router-view v-if="$route.meta.keepAlive" />
+    </keep-alive>
+
     <player-bar v-if="!$route.meta.isLogin"></player-bar>
     <player v-if="!$route.meta.isLogin"></player>
     <nice-footer v-if="!$route.meta.isLogin"></nice-footer>
